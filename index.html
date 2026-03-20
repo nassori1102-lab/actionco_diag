@@ -550,7 +550,7 @@ footer{background:var(--navy-mid);border-top:1px solid var(--navy-border);paddin
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Número do WhatsApp
       </label>
-      <input id="f-whatsapp" type="tel" placeholder="(00) 00000-0000"/>
+      <input id="f-whatsapp" type="tel" placeholder="(00) 00000-0000" oninput="maskPhone(this)" maxlength="16" inputmode="numeric"/>
     </div>
     <div class="field">
       <label>
@@ -1089,6 +1089,20 @@ function overlayClick(e){
   if(e.target===document.getElementById('modal-overlay')) closeModal();
 }
 
+function maskPhone(input){
+  let v = input.value.replace(/\D/g,'');
+  if(v.length > 11) v = v.slice(0,11);
+  if(v.length > 6)       input.value = '('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
+  else if(v.length > 2)  input.value = '('+v.slice(0,2)+') '+v.slice(2);
+  else if(v.length > 0)  input.value = '('+v;
+  else                   input.value = v;
+}
+
+function isValidPhone(v){
+  const digits = v.replace(/\D/g,'');
+  return digits.length >= 10 && digits.length <= 11;
+}
+
 function startQuiz(){
   const name    = document.getElementById('f-name').value.trim();
   const wa      = document.getElementById('f-whatsapp').value.trim();
@@ -1096,12 +1110,37 @@ function startQuiz(){
   const emp     = document.getElementById('f-employees').value;
   const rev     = document.getElementById('f-revenue').value;
   const err     = document.getElementById('form-error');
+  const waInput = document.getElementById('f-whatsapp');
 
   if(!name || !wa || !company || !emp || !rev){
+    err.textContent = 'Por favor, preencha todos os campos.';
     err.style.display='block'; return;
   }
+  if(!isValidPhone(wa)){
+    waInput.style.borderColor='#ff4444';
+    err.textContent = 'Número de WhatsApp inválido. Use o formato (00) 00000-0000.';
+    err.style.display='block';
+    waInput.focus(); return;
+  }
+  waInput.style.borderColor='';
   err.style.display='none';
-  userData = {name,wa,company,emp,rev};
+  userData = {name, wa, company, emp, rev, startedAt: new Date().toISOString()};
+
+  // Salva imediatamente no localStorage (backup local)
+  saveToLocal();
+
+  // Envia para Google Sheets (dados iniciais)
+  sendToSheets({
+    nome: name,
+    whatsapp: wa,
+    empresa: company,
+    colaboradores: emp,
+    faturamento: rev,
+    etapa: 'Iniciou o quiz',
+    pontuacao: '',
+    nivel: '',
+    data: new Date().toLocaleString('pt-BR')
+  });
 
   closeModal();
   document.getElementById('landing').style.display='none';
@@ -1410,6 +1449,95 @@ function closeVslModal(e){
   document.body.style.overflow='';
   const v=document.getElementById('vsl-modal-video');
   if(v) v.pause();
+}
+
+// ─── PERSISTÊNCIA DE DADOS ──────────────────────────────────
+
+// ⚠️ CONFIGURAÇÃO DO GOOGLE SHEETS:
+// 1. Crie uma planilha no Google Sheets
+// 2. Vá em Extensões → Apps Script
+// 3. Cole o script abaixo e salve:
+//
+//   function doPost(e) {
+//     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+//     var data = JSON.parse(e.postData.contents);
+//     sheet.appendRow([
+//       data.data, data.nome, data.whatsapp, data.empresa,
+//       data.colaboradores, data.faturamento, data.etapa,
+//       data.pontuacao, data.nivel
+//     ]);
+//     return ContentService.createTextOutput('OK');
+//   }
+//
+// 4. Publique: Implantar → Nova implantação → App da Web
+//    → Executar como: EU, Acesso: Qualquer pessoa
+// 5. Copie a URL gerada e cole abaixo em SHEETS_URL:
+
+const SHEETS_URL = 'SUA_URL_DO_APPS_SCRIPT_AQUI';
+
+function sendToSheets(data){
+  if(!SHEETS_URL || SHEETS_URL === 'SUA_URL_DO_APPS_SCRIPT_AQUI') return;
+  fetch(SHEETS_URL, {
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  }).catch(()=>{}); // silencioso — não bloqueia o usuário
+}
+
+function saveToLocal(){
+  try {
+    localStorage.setItem('actionco_lead', JSON.stringify({
+      ...userData,
+      answers,
+      score,
+      currentStep: current,
+      savedAt: new Date().toISOString()
+    }));
+  } catch(e){}
+}
+
+function loadFromLocal(){
+  try {
+    const saved = localStorage.getItem('actionco_lead');
+    if(saved){
+      const d = JSON.parse(saved);
+      // Só restaura se foi salvo há menos de 24h
+      const age = Date.now() - new Date(d.savedAt).getTime();
+      if(age < 24*60*60*1000) return d;
+    }
+  } catch(e){}
+  return null;
+}
+
+// Salva progresso a cada resposta
+const _origSelectOpt = selectOpt;
+function selectOpt(i){
+  _origSelectOpt(i);
+  if(userData.name) saveToLocal();
+}
+
+// Salva e envia ao final
+const _origShowResult = showResult;
+function showResult(){
+  _origShowResult();
+  calcScore();
+  saveToLocal();
+  // Atualiza a linha no Sheets com resultado final
+  if(userData.name){
+    const lv = levels.find(l=>score>=l.min&&score<=l.max)||levels[0];
+    sendToSheets({
+      nome: userData.name,
+      whatsapp: userData.wa,
+      empresa: userData.company,
+      colaboradores: userData.emp,
+      faturamento: userData.rev,
+      etapa: 'Completou o quiz',
+      pontuacao: score+'/20',
+      nivel: lv.label,
+      data: new Date().toLocaleString('pt-BR')
+    });
+  }
 }
 
 // init
