@@ -794,9 +794,9 @@ footer{background:var(--navy-mid);border-top:1px solid var(--navy-border);paddin
     </div>
 
     <div style="text-align:center;margin-top:1rem">
-      <button class="btn-cta-big" onclick="openWhatsApp()">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
-        Agendar Minha Consultoria Agora
+      <button class="btn-cta-big" onclick="sendToWhatsApp()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        Falar com um Especialista Agora
       </button>
     </div>
   </div>
@@ -1196,6 +1196,18 @@ function showResult(){
     document.getElementById('result-score').textContent=n;
     if(n>=score) clearInterval(interval);
   },60);
+}
+
+function sendToWhatsApp(){
+  // Abre WhatsApp direto, sem trocar de tela
+  const msg = encodeURIComponent(
+    `Olá! Acabei de fazer o Diagnóstico Comercial da ActionCo.\n` +
+    `Nome: ${userData.name||'—'}\n` +
+    `Empresa: ${userData.company||'—'}\n` +
+    `Pontuação: ${score}/20\n` +
+    `Gostaria de agendar uma consultoria gratuita!`
+  );
+  window.open(`https://wa.me/SEU_NUMERO_WHATSAPP?text=${msg}`, '_blank');
 }
 
 function openWhatsApp(){
