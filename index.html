@@ -1184,6 +1184,8 @@ function selectOpt(i){
   document.getElementById('btn-next').disabled=false;
   calcScore();
   updateScore();
+  // Salva progresso
+  if(userData.name) saveToLocal();
 }
 
 function calcScore(){
@@ -1257,6 +1259,22 @@ function showResult(){
     document.getElementById('result-score').textContent=n;
     if(n>=score) clearInterval(interval);
   },60);
+
+  // Salva resultado final
+  saveToLocal();
+  if(userData.name){
+    sendToSheets({
+      nome: userData.name,
+      whatsapp: userData.wa,
+      empresa: userData.company,
+      colaboradores: userData.emp,
+      faturamento: userData.rev,
+      etapa: 'Completou o quiz',
+      pontuacao: score+'/20',
+      nivel: lv.label,
+      data: new Date().toLocaleString('pt-BR')
+    });
+  }
 }
 
 function sendToWhatsApp(){
@@ -1510,35 +1528,7 @@ function loadFromLocal(){
   return null;
 }
 
-// Salva progresso a cada resposta
-const _origSelectOpt = selectOpt;
-function selectOpt(i){
-  _origSelectOpt(i);
-  if(userData.name) saveToLocal();
-}
-
-// Salva e envia ao final
-const _origShowResult = showResult;
-function showResult(){
-  _origShowResult();
-  calcScore();
-  saveToLocal();
-  // Atualiza a linha no Sheets com resultado final
-  if(userData.name){
-    const lv = levels.find(l=>score>=l.min&&score<=l.max)||levels[0];
-    sendToSheets({
-      nome: userData.name,
-      whatsapp: userData.wa,
-      empresa: userData.company,
-      colaboradores: userData.emp,
-      faturamento: userData.rev,
-      etapa: 'Completou o quiz',
-      pontuacao: score+'/20',
-      nivel: lv.label,
-      data: new Date().toLocaleString('pt-BR')
-    });
-  }
-}
+// (salvamento integrado diretamente nas funções abaixo)
 
 // init
 renderQuestion();
