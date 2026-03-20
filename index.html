@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ActionCo | Diagnóstico Comercial</title>
+<meta name="description" content="Descubra o nível da sua empresa e receba um plano de ação para escalar com método, margem e estrutura."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  /* ActionCo brand colors */
+  --ac-red:    #E31E24;
+  --ac-yellow: #F5C518;
+  --ac-green:  #22B14C;
+  --ac-blue:   #1E88E5;
+
+  /* Primary action = red */
+  --gold:      #E31E24;
+  --gold-light:#FF4D52;
+  --gold-dark: #B8181D;
+
+  /* Surfaces - pure black palette */
+  --navy:      #0A0A0A;
+  --navy-mid:  #111111;
+  --navy-card: #181818;
+  --navy-border:#272727;
+
+  /* Typography */
+  --text:   #F2F2F2;
+  --muted:  #808080;
+  --success:#22B14C;
+  --radius: 12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+
+/* ACTIONCO LOGO */
+.logo-action{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;color:#fff;letter-spacing:.02em;text-transform:uppercase}
+.logo-co{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;color:#E31E24;letter-spacing:.02em;text-transform:uppercase}
+.logo-bar{display:flex;gap:2px;margin-top:3px}
+.logo-bar span{height:3px;flex:1;border-radius:1px}
+.logo-bar .r{background:#E31E24}
+.logo-bar .y{background:#F5C518}
+.logo-bar .g{background:#22B14C}
+.logo-bar .b{background:#1E88E5}
+.logo-wrap{display:flex;flex-direction:column}
+
+/* ACCENT MULTICOLOR */
+.accent-bar{height:3px;background:linear-gradient(90deg,#E31E24 25%,#F5C518 25% 50%,#22B14C 50% 75%,#1E88E5 75%);border-radius:2px;margin:4px 0 0}
+
+/* TYPOGRAPHY */
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;line-height:1.15;letter-spacing:.01em;text-transform:uppercase}
+.gold{color:var(--gold)}
+.gold-gradient{background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,14,26,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--navy-border)}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 1.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+@media(min-width:768px){.site-logo{height:44px}}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--gold)}
+.logo span{color:var(--text)}
+nav{display:flex;align-items:center;gap:2rem}
+nav a{color:var(--muted);text-decoration:none;font-size:0.9rem;transition:color .2s}
+nav a:hover{color:var(--gold)}
+.btn-primary{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;border:none;padding:0.6rem 1.4rem;border-radius:8px;cursor:pointer;letter-spacing:.04em;transition:transform .15s,box-shadow .15s;text-transform:uppercase}
+.btn-primary:hover{transform:scale(1.03);box-shadow:0 0 20px rgba(227,30,36,.35)}
+.btn-primary:active{transform:scale(0.97)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1.5rem 3rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(227,30,36,.08) 0%,transparent 70%)}
+.hero-grid{position:absolute;inset:0;opacity:.025;background-image:linear-gradient(var(--navy-border) 1px,transparent 1px),linear-gradient(90deg,var(--navy-border) 1px,transparent 1px);background-size:40px 40px}
+.hero-content{position:relative;max-width:760px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(227,30,36,.3);background:rgba(227,30,36,.06);padding:.45rem 1rem;border-radius:100px;font-size:.8rem;color:var(--gold);margin-bottom:1.5rem;font-weight:500}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;margin-bottom:1.25rem;line-height:1.1}
+.hero p{color:var(--muted);font-size:1.05rem;max-width:540px;margin:0 auto 2.5rem;line-height:1.7}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:520px;margin:0 auto}
+.stat-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:var(--radius);padding:1.25rem 1rem;text-align:center}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.75rem;color:var(--muted);margin-top:.25rem}
+
+/* MODAL OVERLAY */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.active{opacity:1;pointer-events:all}
+
+/* MODAL */
+.modal{background:var(--navy-card);border:1px solid rgba(227,30,36,.2);border-radius:20px;width:100%;max-width:480px;padding:2rem;position:relative;transform:scale(.95) translateY(20px);transition:transform .3s;max-height:90vh;overflow-y:auto}
+.overlay.active .modal{transform:scale(1) translateY(0)}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);cursor:pointer;padding:.25rem;line-height:1}
+.modal-close:hover{color:var(--text)}
+.modal h2{font-size:1.3rem;font-weight:800;text-align:center;margin-bottom:.35rem}
+.modal .subtitle{text-align:center;color:var(--muted);font-size:.875rem;margin-bottom:1.75rem}
+
+/* FORM */
+.field{margin-bottom:1.1rem}
+.field label{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:500;margin-bottom:.4rem;color:var(--text)}
+.field label svg{color:var(--gold)}
+.field input,.field select{width:100%;background:var(--navy);border:1px solid var(--navy-border);border-radius:10px;padding:.65rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+.field input::placeholder{color:var(--muted)}
+.field input:focus,.field select:focus{border-color:var(--gold)}
+.field select{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A8FA8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.field select option{background:var(--navy-mid)}
+
+/* QUIZ SECTION */
+#quiz-section{display:none;padding:5rem 1.5rem 3rem;min-height:100vh}
+#quiz-section.active{display:block}
+.quiz-wrap{max-width:700px;margin:0 auto}
+.quiz-header{text-align:center;margin-bottom:2rem}
+.quiz-header h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:.5rem}
+.quiz-header p{color:var(--muted);font-size:.9rem}
+
+/* PROGRESS */
+.progress-bar-wrap{margin-bottom:1.75rem}
+.progress-top{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:.5rem}
+.progress-top span:first-child{color:var(--muted)}
+.progress-top span:last-child{color:var(--gold);font-weight:600}
+.progress-track{background:var(--navy-border);border-radius:100px;height:6px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-light),var(--gold-dark));border-radius:100px;transition:width .5s ease}
+
+/* LEVEL CARDS */
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:2rem}
+.level-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:var(--radius);padding:.9rem;transition:all .4s}
+.level-card.unlocked{background:rgba(227,30,36,.08);border-color:rgba(227,30,36,.35)}
+.level-card .lv-top{display:flex;align-items:center;gap:.4rem;margin-bottom:.4rem}
+.level-card .lv-label{font-size:.7rem;font-weight:700;letter-spacing:.06em}
+.level-card.unlocked .lv-label{color:var(--gold)}
+.level-card:not(.unlocked) .lv-label{color:var(--muted)}
+.level-card p{font-size:.75rem;font-weight:500;line-height:1.4}
+.level-card.unlocked p{color:var(--text)}
+.level-card:not(.unlocked) p{color:var(--muted)}
+
+/* QUESTION CARD */
+.q-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:20px;padding:2rem}
+.q-card-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+.q-icon{width:40px;height:40px;background:rgba(227,30,36,.1);border:1px solid rgba(227,30,36,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-num{font-size:.85rem;color:var(--muted)}
+.q-card h3{font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;line-height:1.4}
+.options{display:flex;flex-direction:column;gap:.65rem;margin-bottom:1.75rem}
+.opt-btn{background:rgba(255,255,255,.03);border:1px solid var(--navy-border);border-radius:12px;padding:.9rem 1.1rem;text-align:left;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.85rem;color:var(--text)}
+.opt-btn:hover{border-color:rgba(227,30,36,.4);background:rgba(227,30,36,.05)}
+.opt-btn.selected{border-color:var(--gold);background:rgba(227,30,36,.12)}
+.opt-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--muted);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.opt-btn.selected .opt-radio{border-color:var(--gold);background:var(--gold)}
+.opt-btn.selected .opt-radio::after{content:'';width:7px;height:7px;border-radius:50%;background:#000}
+.opt-btn span{font-size:.95rem;font-weight:500}
+.q-nav{display:flex;justify-content:space-between;gap:1rem}
+.btn-back{background:rgba(255,255,255,.05);border:1px solid var(--navy-border);color:var(--text);font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;padding:.75rem 1.25rem;border-radius:10px;cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:background .2s;min-width:90px;justify-content:center}
+.btn-back:hover{background:rgba(255,255,255,.1)}
+.btn-back:disabled{opacity:.4;cursor:not-allowed}
+.btn-next{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;border:none;padding:.75rem 2rem;border-radius:10px;cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:transform .15s,box-shadow .15s;flex:1;justify-content:center;max-width:220px;letter-spacing:.03em}
+.btn-next:hover:not(:disabled){transform:scale(1.02);box-shadow:0 0 18px rgba(227,30,36,.3)}
+.btn-next:disabled{opacity:.4;cursor:not-allowed}
+.score-display{margin-top:1.25rem;text-align:center;font-size:.85rem;color:var(--muted)}
+.score-display strong{color:var(--gold)}
+
+/* RESULT SECTION */
+#result-section{display:none;padding:5rem 1.5rem 3rem}
+#result-section.active{display:block}
+.result-wrap{max-width:860px;margin:0 auto}
+.result-header{text-align:center;margin-bottom:2rem}
+.result-badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(227,30,36,.3);background:rgba(227,30,36,.06);padding:.45rem 1rem;border-radius:100px;font-size:.8rem;color:var(--gold);margin-bottom:1rem;font-weight:500}
+.result-header h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800}
+
+/* SCORE CIRCLE */
+.score-hero{background:rgba(227,30,36,.08);border:1px solid rgba(227,30,36,.3);border-radius:20px;padding:2rem;display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-bottom:1.5rem}
+@media(min-width:600px){.score-hero{flex-direction:row}}
+.score-circle-wrap{position:relative;width:140px;height:140px;flex-shrink:0}
+.score-circle-bg{position:absolute;inset:0;border-radius:50%;border:4px solid var(--navy-border)}
+.score-circle-fill{position:absolute;inset:0;border-radius:50%;border:4px solid transparent;transition:all 1s ease}
+.score-circle-inner{position:absolute;inset:8px;background:var(--navy-card);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:800;color:var(--gold);line-height:1}
+.score-sub{font-size:.7rem;color:var(--muted)}
+.score-info{flex:1}
+.level-tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;margin-bottom:.4rem}
+.score-info h3{font-size:1.6rem;font-weight:800;color:var(--gold);margin-bottom:.5rem}
+.score-info p{color:var(--muted);font-size:.9rem;line-height:1.6}
+
+/* INSIGHT CARDS */
+.insights{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1.5rem}
+@media(min-width:600px){.insights{grid-template-columns:1fr 1fr}}
+.insight-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:var(--radius);padding:1.25rem}
+.insight-top{display:flex;align-items:center;gap:.65rem;margin-bottom:.65rem}
+.insight-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.insight-icon.warn{background:rgba(227,30,36,.1)}
+.insight-icon.good{background:rgba(61,214,140,.1)}
+.insight-card h4{font-size:.9rem;font-weight:700}
+.insight-card p{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:.65rem}
+.insight-card .tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.75rem}
+.tag.warn{color:var(--gold)}
+.tag.good{color:var(--success)}
+
+/* REWARDS */
+.rewards-title{font-size:1.1rem;font-weight:700;text-align:center;margin-bottom:1rem}
+.rewards-grid{display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:1.5rem}
+@media(min-width:600px){.rewards-grid{grid-template-columns:repeat(3,1fr)}}
+.reward-card{background:rgba(227,30,36,.05);border:1px solid rgba(227,30,36,.2);border-radius:var(--radius);padding:1.1rem;display:flex;flex-direction:column;gap:.75rem}
+.reward-top{display:flex;align-items:center;justify-content:space-between}
+.reward-icon{width:34px;height:34px;background:rgba(227,30,36,.1);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.reward-card h4{font-size:.85rem;font-weight:600;line-height:1.4;flex:1}
+.btn-download{background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;padding:.55rem 1rem;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.4rem;transition:all .2s;letter-spacing:.04em;text-transform:uppercase}
+.btn-download:hover{background:rgba(227,30,36,.1)}
+.btn-schedule{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.75rem;padding:.55rem 1rem;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.4rem;border:none;transition:all .2s;letter-spacing:.04em;text-transform:uppercase}
+.btn-schedule:hover{transform:scale(1.03);box-shadow:0 0 14px rgba(227,30,36,.3)}
+
+/* CTA BLOCK */
+.cta-block{background:var(--navy-card);border:1px solid rgba(227,30,36,.3);border-radius:20px;padding:2rem;text-align:center;margin-bottom:2rem}
+.cta-block h3{font-size:1.4rem;font-weight:800;margin-bottom:.65rem}
+.cta-block p{color:var(--muted);font-size:.9rem;max-width:500px;margin:0 auto 1.5rem;line-height:1.7}
+.btn-cta-big{background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));color:#000;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;border:none;padding:1rem 2.5rem;border-radius:12px;cursor:pointer;display:inline-flex;align-items:center;gap:.6rem;transition:transform .15s,box-shadow .15s;letter-spacing:.04em;text-transform:uppercase}
+.btn-cta-big:hover{transform:scale(1.03);box-shadow:0 0 28px rgba(227,30,36,.4)}
+.cta-guarantees{display:flex;flex-wrap:wrap;justify-content:center;gap:1.25rem;margin-top:1rem}
+.cta-guarantees span{display:flex;align-items:center;gap:.35rem;font-size:.78rem;color:var(--muted)}
+.cta-guarantees svg{color:var(--gold)}
+.urgency{margin-top:.65rem;font-size:.78rem;color:var(--muted)}
+.urgency strong{color:var(--gold)}
+
+/* TESTIMONIALS */
+.testimonials-title{font-size:1.2rem;font-weight:800;text-align:center;margin-bottom:1rem}
+.testimonials-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
+@media(min-width:600px){.testimonials-grid{grid-template-columns:repeat(3,1fr)}}
+.testi-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:var(--radius);padding:1.1rem;transition:border-color .2s}
+.testi-card:hover{border-color:rgba(227,30,36,.3)}
+.stars{display:flex;gap:2px;margin-bottom:.65rem}
+.star{color:var(--gold);font-size:.85rem}
+.testi-text{font-size:.82rem;color:var(--text);opacity:.9;font-style:italic;line-height:1.6;margin-bottom:.9rem}
+.testi-author{display:flex;align-items:center;gap:.65rem}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:rgba(227,30,36,.15);border:2px solid rgba(227,30,36,.3);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;color:var(--gold)}
+.testi-name{font-size:.82rem;font-weight:600}
+.testi-source{font-size:.72rem;color:var(--gold)}
+
+/* FOOTER */
+footer{background:var(--navy-mid);border-top:1px solid var(--navy-border);padding:3rem 1.5rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:2rem}
+@media(min-width:700px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
+.footer-brand p{color:var(--muted);font-size:.85rem;line-height:1.7;max-width:300px;margin:0.75rem 0 1rem}
+.footer-socials{display:flex;gap:.65rem}
+.social-btn{width:38px;height:38px;border-radius:9px;background:var(--navy-card);border:1px solid var(--navy-border);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;transition:all .2s;text-decoration:none}
+.social-btn:hover{border-color:rgba(227,30,36,.4);color:var(--gold)}
+.footer-col h4{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;color:var(--gold);margin-bottom:.85rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.5rem}
+.footer-col ul li a{color:var(--muted);font-size:.85rem;text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:var(--gold)}
+.footer-col .contact-item{display:flex;align-items:flex-start;gap:.5rem;color:var(--muted);font-size:.85rem;margin-bottom:.6rem}
+.footer-col .contact-item svg{color:var(--gold);flex-shrink:0;margin-top:2px}
+.footer-bottom{border-top:1px solid var(--navy-border);padding-top:1.5rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;text-align:center}
+@media(min-width:600px){.footer-bottom{flex-direction:row;justify-content:space-between}}
+.footer-bottom p{font-size:.78rem;color:var(--muted)}
+.footer-links{display:flex;gap:1rem}
+.footer-links a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+
+/* SCHEDULE2 SECTION - calendário customizado */
+#schedule2-section{display:none;padding:5rem 1.5rem 3rem}
+#schedule2-section.active{display:block}
+.schedule2-wrap{max-width:960px;margin:0 auto}
+
+/* CALENDAR */
+.cal-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
+@media(min-width:768px){.cal-grid{grid-template-columns:2fr 1fr}}
+.cal-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:20px;padding:1.5rem}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.cal-header h3{font-size:1.1rem;font-weight:700}
+.cal-nav{display:flex;gap:.5rem}
+.cal-nav-btn{width:32px;height:32px;border-radius:8px;background:rgba(227,30,36,.1);border:1px solid rgba(227,30,36,.2);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cal-nav-btn:hover{background:rgba(227,30,36,.2)}
+.cal-today-btn{background:none;border:1px solid var(--navy-border);color:var(--muted);font-size:.75rem;padding:.25rem .65rem;border-radius:6px;cursor:pointer;transition:all .2s}
+.cal-today-btn:hover{border-color:rgba(227,30,36,.4);color:var(--gold)}
+.cal-days-header{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;margin-bottom:.5rem}
+.cal-days-header span{font-size:.72rem;color:var(--muted);font-weight:600;padding:.25rem 0}
+.cal-days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.8rem;border-radius:8px;cursor:pointer;transition:all .2s;position:relative}
+.cal-day.other-month{color:rgba(122,143,168,.3)}
+.cal-day.past{color:rgba(122,143,168,.3);cursor:not-allowed}
+.cal-day.today{background:rgba(227,30,36,.12);color:var(--gold);font-weight:700}
+.cal-day.weekend{background:rgba(30,46,69,.5)}
+.cal-day.available:hover{background:rgba(227,30,36,.15);border:1px solid rgba(227,30,36,.4);color:var(--gold)}
+.cal-day.selected{background:rgba(227,30,36,.2);border:2px solid var(--gold);color:var(--gold);font-weight:700}
+
+/* TIME SLOTS */
+.times-card{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:20px;padding:1.5rem}
+.times-card h3{font-size:1rem;font-weight:700;display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem}
+.times-empty{text-align:center;padding:2rem 0;color:var(--muted)}
+.times-empty svg{margin:0 auto .75rem;display:block;opacity:.4}
+.times-empty p{font-size:.85rem}
+.time-slots{display:flex;flex-direction:column;gap:.5rem}
+.time-slot{background:rgba(227,30,36,.06);border:1px solid rgba(227,30,36,.2);border-radius:10px;padding:.65rem 1rem;font-size:.875rem;font-weight:500;color:var(--gold);cursor:pointer;transition:all .2s;text-align:center}
+.time-slot:hover{background:rgba(227,30,36,.15);border-color:rgba(227,30,36,.5)}
+.time-slot.selected{background:rgba(227,30,36,.25);border-color:var(--gold)}
+
+/* VSL THUMBNAIL */
+.vsl-thumb{border:1px solid rgba(227,30,36,.2);border-radius:16px;overflow:hidden;margin-bottom:2rem;background:var(--navy-card);position:relative;max-width:800px;margin-left:auto;margin-right:auto;cursor:pointer}
+.vsl-thumb .aspect-video{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--navy-card),var(--navy-mid));position:relative}
+.vsl-play-btn{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.vsl-thumb:hover .vsl-play-btn{transform:scale(1.1)}
+.vsl-duration{display:flex;align-items:center;gap:.4rem;color:var(--muted);font-size:.85rem;margin-top:.5rem}
+.vsl-thumb .vsl-label-tl{position:absolute;top:.75rem;left:.75rem;font-size:.65rem;color:rgba(227,30,36,.25);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.1em}
+.vsl-thumb .vsl-label-br{position:absolute;bottom:.75rem;right:.75rem;font-size:.65rem;color:rgba(227,30,36,.25)}
+
+/* SCHEDULE2 */
+#schedule-section{display:none;padding:5rem 1.5rem 3rem}
+#schedule-section.active{display:block}
+.schedule-wrap{max-width:900px;margin:0 auto}
+.schedule-header{text-align:center;margin-bottom:2.5rem}
+.schedule-badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(227,30,36,.3);background:rgba(227,30,36,.06);padding:.45rem 1rem;border-radius:100px;font-size:.8rem;color:var(--gold);margin-bottom:1rem;font-weight:500}
+.schedule-header h1{font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:1rem}
+.schedule-header p{color:var(--muted);font-size:.95rem;max-width:560px;margin:0 auto}
+.vsl-wrap{border:1px solid rgba(227,30,36,.2);border-radius:16px;overflow:hidden;margin-bottom:2rem;background:var(--navy-card);position:relative}
+.vsl-wrap video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.vsl-mute-btn{position:absolute;top:.75rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:rgba(8,14,26,.8);backdrop-filter:blur(8px);border:1px solid rgba(227,30,36,.3);border-radius:100px;color:var(--gold);font-size:.8rem;font-weight:500;cursor:pointer;z-index:10;transition:all .2s}
+.vsl-mute-btn:hover{background:rgba(227,30,36,.1)}
+.vsl-progress{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,.1)}
+.vsl-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-light),var(--gold-dark));width:0%;transition:width .3s ease}
+.calendly-wrap{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:20px;padding:1.5rem;margin-bottom:2rem}
+.calendly-wrap h2{font-size:1.3rem;font-weight:800;text-align:center;margin-bottom:.4rem}
+.calendly-wrap p{text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:1.25rem}
+.calendly-wrap iframe{border-radius:12px;display:block}
+.schedule-cta{background:var(--navy-card);border:1px solid rgba(227,30,36,.3);border-radius:20px;padding:2rem;text-align:center}
+.schedule-cta h3{font-size:1.2rem;font-weight:800;margin-bottom:.4rem}
+.schedule-cta .urgency{color:var(--muted);font-size:.85rem;margin-bottom:1.25rem}
+.schedule-cta .urgency strong{color:var(--gold)}
+
+
+/* ── SITE LOGO ────────────────────────────────────────────── */
+.site-logo{height:36px;width:auto;display:block}
+.site-logo-footer{height:44px;width:auto;display:block;margin-bottom:.75rem}
+
+/* ── MULTICOLOR ACCENT UTILITIES ─────────────────────────── */
+/* Headline gradient usa vermelho + amarelo (quente, energético) */
+.gold-gradient{
+  background:linear-gradient(120deg,var(--gold-light) 0%,var(--gold) 60%,var(--gold-dark) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text
+}
+/* Barra decorativa 4 cores */
+.brand-bar{
+  display:flex;height:3px;border-radius:2px;overflow:hidden;
+  background:linear-gradient(90deg,var(--ac-red) 25%,var(--ac-yellow) 25% 50%,var(--ac-green) 50% 75%,var(--ac-blue) 75%)
+}
+/* Progress fill → azul (menos agressivo que vermelho em barra longa) */
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--ac-blue),var(--ac-green));
+  border-radius:100px;transition:width .5s ease
+}
+/* Score ring → verde (positivo/conquista) */
+#score-ring{stroke:var(--ac-green)!important}
+.score-num{color:var(--ac-green)!important}
+
+/* Level cards: cada nível com uma cor diferente */
+#lv1.unlocked{background:rgba(30,136,229,.08);border-color:rgba(30,136,229,.35)}
+#lv1.unlocked .lv-label{color:var(--ac-blue)}
+#lv1.unlocked svg{color:var(--ac-blue)}
+#lv2.unlocked{background:rgba(34,177,76,.08);border-color:rgba(34,177,76,.35)}
+#lv2.unlocked .lv-label{color:var(--ac-green)}
+#lv2.unlocked svg{color:var(--ac-green)}
+#lv3.unlocked{background:rgba(227,30,36,.08);border-color:rgba(227,30,36,.35)}
+#lv3.unlocked .lv-label{color:var(--ac-red)}
+#lv3.unlocked svg{color:var(--ac-red)}
+
+/* Insight icons: warn=yellow, good=green */
+.insight-icon.warn{background:rgba(245,197,24,.1)}
+.insight-icon.warn svg{stroke:var(--ac-yellow)}
+.tag.warn{color:var(--ac-yellow)}
+.insight-icon.good{background:rgba(34,177,76,.1)}
+.tag.good{color:var(--ac-green)}
+
+/* Reward cards: cor por nível */
+.reward-card:nth-child(1){border-color:rgba(30,136,229,.25);background:rgba(30,136,229,.04)}
+.reward-card:nth-child(1) .reward-icon{background:rgba(30,136,229,.12)}
+.reward-card:nth-child(1) .reward-icon svg{stroke:var(--ac-blue)}
+.reward-card:nth-child(1) .btn-download{border-color:var(--ac-blue);color:var(--ac-blue)}
+.reward-card:nth-child(1) .btn-download:hover{background:rgba(30,136,229,.1)}
+.reward-card:nth-child(2){border-color:rgba(34,177,76,.25);background:rgba(34,177,76,.04)}
+.reward-card:nth-child(2) .reward-icon{background:rgba(34,177,76,.12)}
+.reward-card:nth-child(2) .reward-icon svg{stroke:var(--ac-green)}
+.reward-card:nth-child(2) .btn-download{border-color:var(--ac-green);color:var(--ac-green)}
+.reward-card:nth-child(2) .btn-download:hover{background:rgba(34,177,76,.1)}
+.reward-card:nth-child(3){border-color:rgba(227,30,36,.25);background:rgba(227,30,36,.04)}
+.reward-card:nth-child(3) .reward-icon{background:rgba(227,30,36,.12)}
+.reward-card:nth-child(3) .reward-icon svg{stroke:var(--ac-red)}
+
+/* Score hero: usa azul como accent de fundo */
+.score-hero{
+  background:rgba(30,136,229,.06);
+  border-color:rgba(30,136,229,.25)!important
+}
+.level-tag{color:var(--ac-blue)!important}
+.score-info h3{color:var(--ac-green)!important}
+
+/* CTA block: borda amarela para variar */
+.cta-block{border-color:rgba(245,197,24,.25)!important}
+
+/* Testimonials hover: azul */
+.testi-card:hover{border-color:rgba(30,136,229,.3)!important}
+.testi-source{color:var(--ac-blue)!important}
+.star{color:var(--ac-yellow)!important}
+.testi-avatar{background:rgba(30,136,229,.15)!important;border-color:rgba(30,136,229,.3)!important;color:var(--ac-blue)!important}
+
+/* Footer headings: azul */
+.footer-col h4{color:var(--ac-blue)!important}
+.footer-col .contact-item svg{color:var(--ac-blue)!important}
+.social-btn:hover{border-color:rgba(227,30,36,.4)!important;color:var(--ac-red)!important}
+
+/* Calendar: azul */
+.cal-nav-btn{background:rgba(30,136,229,.1)!important;border-color:rgba(30,136,229,.2)!important;color:var(--ac-blue)!important}
+.cal-nav-btn:hover{background:rgba(30,136,229,.2)!important}
+.cal-today-btn:hover{border-color:rgba(30,136,229,.4)!important;color:var(--ac-blue)!important}
+.cal-day.today{background:rgba(30,136,229,.12)!important;color:var(--ac-blue)!important}
+.cal-day.available:hover{background:rgba(30,136,229,.1)!important;border-color:rgba(30,136,229,.4)!important;color:var(--ac-blue)!important}
+.cal-day.selected{background:rgba(30,136,229,.2)!important;border-color:var(--ac-blue)!important;color:var(--ac-blue)!important}
+.times-card h3 svg{stroke:var(--ac-blue)!important}
+.time-slot{background:rgba(34,177,76,.05)!important;border-color:rgba(34,177,76,.2)!important;color:var(--ac-green)!important}
+.time-slot:hover{background:rgba(34,177,76,.12)!important;border-color:rgba(34,177,76,.5)!important}
+.time-slot.selected{background:rgba(34,177,76,.2)!important;border-color:var(--ac-green)!important}
+
+/* Modal focus: vermelho */
+.field input:focus,.field select:focus{border-color:var(--ac-red)!important}
+.field label svg{color:var(--ac-red)!important}
+
+/* Q-icon: amarelo */
+.q-icon{background:rgba(245,197,24,.08)!important;border-color:rgba(245,197,24,.2)!important}
+.q-icon svg{stroke:var(--ac-yellow)!important}
+
+/* Opt selected: amarelo */
+.opt-btn:hover{border-color:rgba(245,197,24,.4)!important;background:rgba(245,197,24,.04)!important}
+.opt-btn.selected{border-color:var(--ac-yellow)!important;background:rgba(245,197,24,.1)!important}
+.opt-btn.selected .opt-radio{border-color:var(--ac-yellow)!important;background:var(--ac-yellow)!important}
+.score-display strong{color:var(--ac-yellow)!important}
+.progress-top span:last-child{color:var(--ac-yellow)!important}
+
+/* Hero badge: vermelho */
+.hero-badge{border-color:rgba(227,30,36,.3)!important;background:rgba(227,30,36,.06)!important;color:var(--ac-red)!important}
+
+/* Stat nums: por posição */
+.stat-card:nth-child(1) .stat-num{background:linear-gradient(135deg,var(--ac-red),var(--ac-yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-card:nth-child(2) .stat-num{background:linear-gradient(135deg,var(--ac-green),var(--ac-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-card:nth-child(3) .stat-num{background:linear-gradient(135deg,var(--ac-blue),var(--ac-green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* Hero bg: vermelho bem suave */
+.hero-bg{background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(227,30,36,.06) 0%,transparent 70%)!important}
+
+/* VSL mute btn */
+.vsl-mute-btn{border-color:rgba(245,197,24,.3)!important;color:var(--ac-yellow)!important}
+.vsl-mute-btn:hover{background:rgba(245,197,24,.1)!important}
+.vsl-progress-fill{background:linear-gradient(90deg,var(--ac-red),var(--ac-yellow))!important}
+
+/* Schedule badge: verde */
+.schedule-badge{border-color:rgba(34,177,76,.3)!important;background:rgba(34,177,76,.06)!important;color:var(--ac-green)!important}
+
+/* Result badge: azul */
+.result-badge{border-color:rgba(30,136,229,.3)!important;background:rgba(30,136,229,.06)!important;color:var(--ac-blue)!important}
+.result-badge svg{stroke:var(--ac-blue)!important}
+
+/* Urgency */
+.urgency strong{color:var(--ac-yellow)!important}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .5s ease forwards}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(227,30,36,.3)}50%{box-shadow:0 0 0 8px rgba(227,30,36,0)}}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .levels{grid-template-columns:1fr}
+  nav{display:none}
+  .hero-stats{grid-template-columns:1fr;max-width:240px}
+  .q-nav{flex-wrap:wrap}
+  .btn-next{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <img src="data:image/jpeg;base64,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" alt="ActionCo" class="site-logo"/>
+    <nav>
+      <a href="#quiz-section">Diagnóstico</a>
+      <a href="#result-section">Resultados</a>
+      <button class="btn-primary" onclick="openModal()">Iniciar Agora</button>
+    </nav>
+    <button class="btn-primary" style="display:none" id="mobile-cta" onclick="openModal()">Iniciar</button>
+  </div>
+</header>
+<div class="brand-bar" style="position:fixed;top:64px;left:0;right:0;z-index:99;height:3px"></div>
+
+<!-- LANDING PAGE -->
+<main id="landing">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content fade-up">
+      <div class="hero-badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        Consultoria Premium para Empresários
+      </div>
+      <h1>Transforme Seu <span class="gold-gradient">Comando Comercial</span> em Resultados Previsíveis</h1>
+      <p>Descubra em 3 minutos o que está travando seu crescimento. Desbloqueie ferramentas exclusivas e receba seu diagnóstico personalizado.</p>
+      <button class="btn-primary" style="font-size:1rem;padding:.9rem 2.5rem;margin-bottom:2rem" onclick="openModal()">
+        Iniciar Diagnóstico Gratuito &nbsp;→
+      </button>
+      <p style="font-size:.78rem;color:var(--muted);margin-top:-.75rem;margin-bottom:2rem">+500 empresários já transformaram suas vendas</p>
+      <div class="hero-stats">
+        <div class="stat-card"><div class="stat-num">65%</div><div class="stat-label">Taxa de Conversão</div></div>
+        <div class="stat-card"><div class="stat-num">30</div><div class="stat-label">Dias para Resultados</div></div>
+        <div class="stat-card"><div class="stat-num">R$30k+</div><div class="stat-label">Faturamento Mínimo</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL POPUP -->
+<div class="overlay" id="modal-overlay" onclick="overlayClick(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <h2 class="gold-gradient">INFORME SEUS DADOS</h2>
+    <p class="subtitle">Preencha seus dados para iniciar o diagnóstico</p>
+
+    <div class="field">
+      <label>
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Nome Completo
+      </label>
+      <input id="f-name" type="text" placeholder="Seu nome"/>
+    </div>
+    <div class="field">
+      <label>
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Número do WhatsApp
+      </label>
+      <input id="f-whatsapp" type="tel" placeholder="(00) 00000-0000"/>
+    </div>
+    <div class="field">
+      <label>
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/></svg>
+        Nome da Empresa
+      </label>
+      <input id="f-company" type="text" placeholder="Sua empresa"/>
+    </div>
+    <div class="field">
+      <label>
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Número de Colaboradores
+      </label>
+      <select id="f-employees">
+        <option value="" disabled selected>Selecione</option>
+        <option value="1-5">1-5 colaboradores</option>
+        <option value="6-10">6-10 colaboradores</option>
+        <option value="11-25">11-25 colaboradores</option>
+        <option value="26-50">26-50 colaboradores</option>
+        <option value="51-100">51-100 colaboradores</option>
+        <option value="100+">100+ colaboradores</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Faturamento Médio Mensal
+      </label>
+      <select id="f-revenue">
+        <option value="" disabled selected>Selecione</option>
+        <option value="R$ 15k - R$ 30k">R$ 15k – R$ 30k</option>
+        <option value="R$ 30k - R$ 50k">R$ 30k – R$ 50k</option>
+        <option value="R$ 50k - R$ 100k">R$ 50k – R$ 100k</option>
+        <option value="R$ 100k - R$ 250k">R$ 100k – R$ 250k</option>
+        <option value="R$ 250k - R$ 500k">R$ 250k – R$ 500k</option>
+        <option value="R$ 500k+">R$ 500k+</option>
+      </select>
+    </div>
+
+    <button class="btn-primary" style="width:100%;font-size:.95rem;padding:.9rem" onclick="startQuiz()">
+      INICIAR DIAGNÓSTICO &nbsp;→
+    </button>
+    <p id="form-error" style="color:#f66;font-size:.8rem;text-align:center;margin-top:.65rem;display:none">Por favor, preencha todos os campos.</p>
+  </div>
+</div>
+
+<!-- QUIZ SECTION -->
+<section id="quiz-section">
+  <div class="quiz-wrap">
+    <div class="quiz-header">
+      <h2 class="gold-gradient">Diagnóstico Comercial</h2>
+      <p>Responda com sinceridade para receber seu diagnóstico personalizado</p>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-top">
+        <span>Progresso</span>
+        <span id="progress-label">1 de 5</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:20%"></div>
+      </div>
+    </div>
+
+    <div class="levels" id="levels">
+      <div class="level-card" id="lv1">
+        <div class="lv-top">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="lv1-icon"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span class="lv-label">NÍVEL 1</span>
+        </div>
+        <p>Manual de Metas e Indicadores</p>
+      </div>
+      <div class="level-card" id="lv2">
+        <div class="lv-top">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="lv2-icon"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span class="lv-label">NÍVEL 2</span>
+        </div>
+        <p>Template de Script Comercial Validado</p>
+      </div>
+      <div class="level-card" id="lv3">
+        <div class="lv-top">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="lv3-icon"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span class="lv-label">NÍVEL 3</span>
+        </div>
+        <p>Diagnóstico com Especialistas ActionCo</p>
+      </div>
+    </div>
+
+    <div class="q-card">
+      <div class="q-card-top">
+        <div class="q-icon">
+          <svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+        </div>
+        <span class="q-num" id="q-num-label">Pergunta 1</span>
+      </div>
+      <h3 id="q-text"></h3>
+      <div class="options" id="q-options"></div>
+      <div class="q-nav">
+        <button class="btn-back" id="btn-back" onclick="prevQ()" disabled>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+          Voltar
+        </button>
+        <button class="btn-next" id="btn-next" onclick="nextQ()" disabled>
+          <span id="btn-next-text">Próxima</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="score-display">Sua pontuação atual: <strong id="score-live">0 pontos</strong></div>
+  </div>
+</section>
+
+<!-- RESULT SECTION -->
+<section id="result-section">
+  <div class="result-wrap">
+    <div class="result-header">
+      <div class="result-badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        Diagnóstico Completo
+      </div>
+      <h2 class="gold-gradient">Seu Mapa Comercial</h2>
+    </div>
+
+    <div class="score-hero">
+      <div class="score-circle-wrap">
+        <div class="score-circle-bg"></div>
+        <svg width="140" height="140" style="position:absolute;inset:0;transform:rotate(-90deg)">
+          <circle id="score-ring" cx="70" cy="70" r="62" fill="none" stroke="var(--gold)" stroke-width="4" stroke-dasharray="389" stroke-dashoffset="389" stroke-linecap="round" style="transition:stroke-dashoffset 1.2s ease"/>
+        </svg>
+        <div class="score-circle-inner">
+          <div class="score-num" id="result-score">0</div>
+          <div class="score-sub">de 20 pts</div>
+        </div>
+      </div>
+      <div class="score-info">
+        <div class="level-tag">Nível de Maturidade</div>
+        <h3 id="result-level">—</h3>
+        <p id="result-desc">—</p>
+      </div>
+    </div>
+
+    <div class="insights">
+      <div class="insight-card">
+        <div class="insight-top">
+          <div class="insight-icon warn">
+            <svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          </div>
+          <h4 class="gold-gradient">Principal Gargalo</h4>
+        </div>
+        <p>Com base nas suas respostas, você está perdendo até <strong style="color:var(--gold)">30% da sua margem</strong> por falta de processos comerciais estruturados.</p>
+        <div class="tag warn">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Solução média: 30 dias
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-top">
+          <div class="insight-icon good">
+            <svg width="18" height="18" fill="none" stroke="var(--success)" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <h4 class="gold-gradient">Projeção de ROI</h4>
+        </div>
+        <p>Empresários com seu perfil que implementaram nossa metodologia aumentaram o faturamento em média <strong style="color:var(--success)">47% em 90 dias</strong>.</p>
+        <div class="tag good">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          Baseado em +500 casos
+        </div>
+      </div>
+    </div>
+
+    <p class="rewards-title">🎁 Suas Recompensas Desbloqueadas</p>
+    <div class="rewards-grid">
+      <div class="reward-card">
+        <div class="reward-top">
+          <div class="reward-icon"><svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></div>
+          <svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h4>Manual de Metas e Indicadores</h4>
+        <button class="btn-download">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          Baixar Agora
+        </button>
+      </div>
+      <div class="reward-card">
+        <div class="reward-top">
+          <div class="reward-icon"><svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></div>
+          <svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h4>Manual de Estruturação Comercial</h4>
+        <button class="btn-download">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          Baixar Agora
+        </button>
+      </div>
+      <div class="reward-card">
+        <div class="reward-top">
+          <div class="reward-icon"><svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <h4>Diagnóstico com Especialistas ActionCo</h4>
+        <button class="btn-schedule" onclick="openWhatsApp()">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+          Agendar Agora
+        </button>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <h3 class="gold-gradient">Pronto Para Assumir o Comando?</h3>
+      <p>Agende um diagnóstico gratuito com nossos especialistas. Em 30 minutos, vamos mapear exatamente o que está travando seu crescimento e criar um plano de ação personalizado.</p>
+      <button class="btn-cta-big" onclick="openSchedule2()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+        Agendar Diagnóstico
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      <div class="cta-guarantees">
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Sem compromisso</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> 30 min de consultoria</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> 100% online</span>
+      </div>
+      <div class="urgency">⚡ <strong>Oferta limitada:</strong> Apenas 5 vagas restantes esta semana</div>
+    </div>
+
+    <h3 class="testimonials-title gold-gradient">O Que Nossos Clientes Dizem</h3>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="testi-text">"Fundamental para estruturação do meu negócio. Equipe competente, acessível e atualizada. Recomendo!"</p>
+        <div class="testi-author"><div class="testi-avatar">J</div><div><div class="testi-name">Juliana Entrago de Souza</div><div class="testi-source">Google Meu Negócio</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="testi-text">"O que eles fazem vai além de qualquer serviço: é uma escola de empreendedorismo. Mudaram minha história!"</p>
+        <div class="testi-author"><div class="testi-avatar">I</div><div><div class="testi-name">Instituto Jack Losa</div><div class="testi-source">Google Meu Negócio</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="testi-text">"4 meses depois estamos comemorando por faturar 500k. É realmente inacreditável!"</p>
+        <div class="testi-author"><div class="testi-avatar">N</div><div><div class="testi-name">Núcleo Castro Neves</div><div class="testi-source">Google Meu Negócio</div></div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1rem">
+      <button class="btn-cta-big" onclick="openWhatsApp()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+        Agendar Minha Consultoria Agora
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE SECTION -->
+<section id="schedule-section">
+  <div class="schedule-wrap">
+    <div class="schedule-header">
+      <div class="schedule-badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+        Último Passo
+      </div>
+      <h1>
+        <span class="gold-gradient">Agora é com a gente:</span><br>
+        <span style="font-weight:800"> vamos estruturar seu comercial</span><br>
+        <span class="gold-gradient"> como uma máquina de vendas</span>
+      </h1>
+      <p style="margin-top:1rem">Sua pontuação indica oportunidades claras de crescimento. Assista ao vídeo e agende seu diagnóstico gratuito.</p>
+    </div>
+
+    <!-- VSL VIDEO -->
+    <div class="vsl-wrap">
+      <button class="vsl-mute-btn" id="vsl-mute-btn" onclick="toggleMute()">
+        <svg id="vsl-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/></svg>
+        <span id="vsl-btn-text">Clique para ouvir</span>
+      </button>
+      <video id="vsl-video"
+        src="https://hgpwtrvpvzbzeecjzjzi.supabase.co/storage/v1/object/public/testimonials//YAN VSL.mp4"
+        playsinline autoplay muted preload="auto"
+        onloadedmetadata="initVslProgress()"
+        ontimeupdate="updateVslProgress()"
+        style="pointer-events:none">
+      </video>
+      <div class="vsl-progress"><div class="vsl-progress-fill" id="vsl-progress-fill"></div></div>
+    </div>
+
+    <!-- CALENDLY -->
+    <div class="calendly-wrap">
+      <h2 class="gold-gradient">Agende Seu Diagnóstico Gratuito</h2>
+      <p>Escolha o melhor dia e horário para sua consultoria</p>
+      <iframe
+        id="calendly-iframe"
+        src="https://calendly.com/comercialgruponext/30min"
+        width="100%"
+        height="700"
+        frameborder="0"
+        title="Agendar Diagnóstico ActionCo">
+      </iframe>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="schedule-cta">
+      <h3 class="gold-gradient">Não perca essa oportunidade</h3>
+      <div class="urgency">⚡ Apenas <strong>5 vagas</strong> restantes esta semana</div>
+      <button class="btn-cta-big" onclick="scrollToCalendly()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+        Escolher Horário
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      <div class="cta-guarantees" style="margin-top:1rem">
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Sem compromisso</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> 30 min de consultoria</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> 100% online</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE2 SECTION - calendário customizado -->
+<section id="schedule2-section">
+  <div class="schedule2-wrap">
+    <div class="schedule-header">
+      <div class="schedule-badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+        Último Passo
+      </div>
+      <h1><span class="gold-gradient">Agora é com a gente:</span><br><span style="font-weight:800"> vamos estruturar seu comercial</span><br><span class="gold-gradient"> como uma máquina de vendas</span></h1>
+      <p id="s2-score-text" style="margin-top:1rem;color:var(--muted);font-size:.95rem">Sua pontuação indica oportunidades claras de crescimento. Assista ao vídeo e agende seu diagnóstico gratuito.</p>
+    </div>
+
+    <!-- VSL THUMBNAIL -->
+    <div class="vsl-thumb" onclick="openVslModal()" style="margin-bottom:2rem">
+      <div class="aspect-video">
+        <div style="position:absolute;inset:0;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22%3E%3Cpath fill=%22%23ffd70008%22 d=%22M0 0h60v60H0z%22/%3E%3C/svg%3E');opacity:.3"></div>
+        <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.75rem">
+          <div class="vsl-play-btn">
+            <svg width="36" height="36" fill="currentColor" viewBox="0 0 24 24" style="color:#000;margin-left:4px"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          </div>
+          <span style="color:var(--muted);font-size:.85rem;display:flex;align-items:center;gap:.4rem">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Vídeo de 5 minutos
+          </span>
+        </div>
+        <span style="position:absolute;top:.75rem;left:.75rem;font-size:.65rem;color:rgba(227,30,36,.25);font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.1em">ACTIONCO</span>
+        <span style="position:absolute;bottom:.75rem;right:.75rem;font-size:.65rem;color:rgba(227,30,36,.25)">Diagnóstico Comercial</span>
+      </div>
+    </div>
+
+    <!-- CALENDÁRIO -->
+    <div style="margin-bottom:1.25rem">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <h2 class="gold-gradient" style="font-size:1.3rem;font-weight:800;margin-bottom:.3rem">Agende Seu Diagnóstico Gratuito</h2>
+        <p style="color:var(--muted);font-size:.85rem">Escolha o melhor dia e horário para sua sessão com nossos especialistas</p>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-card">
+          <div class="cal-header">
+            <h3 id="cal-month-label" class="gold-gradient"></h3>
+            <div style="display:flex;gap:.5rem;align-items:center">
+              <button class="cal-today-btn" onclick="goToday()">Hoje</button>
+              <div class="cal-nav">
+                <button class="cal-nav-btn" onclick="prevMonth()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+                <button class="cal-nav-btn" onclick="nextMonth()"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div class="cal-days-header">
+            <span>dom.</span><span>seg.</span><span>ter.</span><span>qua.</span><span>qui.</span><span>sex.</span><span>sáb.</span>
+          </div>
+          <div class="cal-days-grid" id="cal-days"></div>
+        </div>
+        <div class="times-card">
+          <h3><svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Horários Disponíveis</h3>
+          <div id="time-panel">
+            <div class="times-empty">
+              <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+              <p>Selecione uma data no calendário para ver os horários disponíveis</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA FINAL -->
+    <div class="schedule-cta">
+      <h3 class="gold-gradient">Não perca essa oportunidade</h3>
+      <div class="urgency">⚡ Apenas <strong>5 vagas</strong> restantes esta semana</div>
+      <button class="btn-cta-big" onclick="confirmSchedule()">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+        Garantir Minha Vaga
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      <div class="cta-guarantees" style="margin-top:1rem">
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> Sem compromisso</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> 30 min de consultoria</span>
+        <span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg> 100% online</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL VSL -->
+<div class="overlay" id="vsl-overlay" onclick="closeVslModal(event)" style="z-index:300">
+  <div style="width:100%;max-width:800px;position:relative" onclick="event.stopPropagation()">
+    <button onclick="closeVslModal()" style="position:absolute;top:-2rem;right:0;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.5rem">✕</button>
+    <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(227,30,36,.2)">
+      <video id="vsl-modal-video" src="https://hgpwtrvpvzbzeecjzjzi.supabase.co/storage/v1/object/public/testimonials//YAN VSL.mp4" controls playsinline style="width:100%;display:block;aspect-ratio:16/9;background:#000"></video>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="data:image/jpeg;base64,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" alt="ActionCo" class="site-logo-footer"/>
+        <p>Consultoria de estruturação comercial para empresários que querem escalar com margem e liberdade.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Casos de Sucesso</a></li>
+          <li><a href="#">Materiais Gratuitos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <div class="contact-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>comercial@contato@actionco.com.br</div>
+        <div class="contact-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(00) 00000-0000</div>
+        <div class="contact-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>Sua Cidade, Estado – Brasil</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ActionCo. Todos os direitos reservados.</p>
+      <div class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────
+const questions = [
+  {
+    text: "Qual a porcentagem do seu faturamento que você consegue prever com 30 dias de antecedência?",
+    opts: ["Menos de 20%","Entre 20% e 50%","Entre 50% e 80%","Mais de 80%"],
+    points: [1,2,3,4]
+  },
+  {
+    text: "Com que frequência você apaga incêndios na sua operação?",
+    opts: ["O tempo todo","Regularmente","Quase nunca","Nunca"],
+    points: [1,2,3,4]
+  },
+  {
+    text: "Sua equipe comercial segue um script ou processo padronizado?",
+    opts: ["Não existe processo definido","Existe mas não é seguido","Seguido parcialmente","100% padronizado e monitorado"],
+    points: [1,2,3,4]
+  },
+  {
+    text: "Qual é sua margem de lucro líquido atual?",
+    opts: ["Menos de 10%","Entre 10% e 20%","Entre 20% e 35%","Mais de 35%"],
+    points: [1,2,3,4]
+  },
+  {
+    text: "Se você precisasse ficar 30 dias internado, sua empresa continuaria vendendo ou pararia junto com você?",
+    opts: ["Caos total, vendas parariam","Quedas significativas","Pequenas quedas","Funcionaria normalmente"],
+    points: [1,2,3,4]
+  }
+];
+
+const levels = [
+  {min:0,  max:7,  label:"Zona de Risco",    desc:"Sua operação comercial ainda depende muito de você. É hora de estruturar antes de escalar."},
+  {min:8,  max:12, label:"Em Evolução",       desc:"Você está no caminho certo. Falta estruturar para escalar com consistência."},
+  {min:13, max:17, label:"Estruturado",       desc:"Boa base instalada! Com pequenos ajustes você pode dobrar seus resultados."},
+  {min:18, max:20, label:"Alta Performance",  desc:"Parabéns! Sua operação é madura. Foco agora em escalar com estratégia avançada."}
+];
+
+// ─── STATE ──────────────────────────────────────────────
+let current = 0;
+let answers = new Array(questions.length).fill(null);
+let score   = 0;
+let userData = {};
+
+// ─── MODAL ──────────────────────────────────────────────
+function openModal(){
+  document.getElementById('modal-overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+function overlayClick(e){
+  if(e.target===document.getElementById('modal-overlay')) closeModal();
+}
+
+function startQuiz(){
+  const name    = document.getElementById('f-name').value.trim();
+  const wa      = document.getElementById('f-whatsapp').value.trim();
+  const company = document.getElementById('f-company').value.trim();
+  const emp     = document.getElementById('f-employees').value;
+  const rev     = document.getElementById('f-revenue').value;
+  const err     = document.getElementById('form-error');
+
+  if(!name || !wa || !company || !emp || !rev){
+    err.style.display='block'; return;
+  }
+  err.style.display='none';
+  userData = {name,wa,company,emp,rev};
+
+  closeModal();
+  document.getElementById('landing').style.display='none';
+  const qs = document.getElementById('quiz-section');
+  qs.classList.add('active');
+  window.scrollTo(0,0);
+  renderQuestion();
+}
+
+// ─── QUIZ ───────────────────────────────────────────────
+function renderQuestion(){
+  const q = questions[current];
+  document.getElementById('q-num-label').textContent = `Pergunta ${current+1}`;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('progress-label').textContent = `${current+1} de ${questions.length}`;
+  document.getElementById('progress-fill').style.width = `${((current+1)/questions.length)*100}%`;
+  document.getElementById('btn-back').disabled = current===0;
+  document.getElementById('btn-next-text').textContent = current===questions.length-1 ? 'Ver Resultado' : 'Próxima';
+  document.getElementById('btn-next').disabled = answers[current]===null;
+
+  // options
+  const container = document.getElementById('q-options');
+  container.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn' + (answers[current]===i?' selected':'');
+    btn.innerHTML = `<div class="opt-radio"></div><span>${opt}</span>`;
+    btn.onclick = ()=>selectOpt(i);
+    container.appendChild(btn);
+  });
+
+  updateLevels();
+  updateScore();
+}
+
+function selectOpt(i){
+  answers[current]=i;
+  document.querySelectorAll('.opt-btn').forEach((b,idx)=>{
+    b.classList.toggle('selected', idx===i);
+  });
+  document.getElementById('btn-next').disabled=false;
+  calcScore();
+  updateScore();
+}
+
+function calcScore(){
+  score=0;
+  answers.forEach((a,qi)=>{
+    if(a!==null) score += questions[qi].points[a];
+  });
+}
+
+function updateScore(){
+  document.getElementById('score-live').textContent = score+' pontos';
+}
+
+function updateLevels(){
+  // lv1 unlocks after Q2, lv2 after Q4, lv3 at result
+  const unlockLv1 = current >= 2;
+  const unlockLv2 = current >= 4;
+  ['lv1','lv2','lv3'].forEach((id,i)=>{
+    const el = document.getElementById(id);
+    const unlock = (i===0&&unlockLv1)||(i===1&&unlockLv2);
+    el.classList.toggle('unlocked', unlock);
+    const iconEl = document.getElementById(id+'-icon');
+    if(unlock){
+      iconEl.innerHTML='<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/>';
+    } else {
+      iconEl.innerHTML='<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>';
+    }
+  });
+}
+
+function nextQ(){
+  if(answers[current]===null) return;
+  if(current===questions.length-1){
+    showResult(); return;
+  }
+  current++;
+  renderQuestion();
+  window.scrollTo(0,0);
+}
+
+function prevQ(){
+  if(current===0) return;
+  current--;
+  renderQuestion();
+}
+
+// ─── RESULT ─────────────────────────────────────────────
+function showResult(){
+  calcScore();
+  document.getElementById('quiz-section').classList.remove('active');
+  const rs = document.getElementById('result-section');
+  rs.classList.add('active');
+  window.scrollTo(0,0);
+
+  const lv = levels.find(l=>score>=l.min&&score<=l.max) || levels[0];
+  document.getElementById('result-score').textContent = score;
+  document.getElementById('result-level').textContent = lv.label;
+  document.getElementById('result-desc').textContent  = lv.desc;
+
+  // animate ring
+  const pct = score/20;
+  const circ = 2*Math.PI*62;
+  setTimeout(()=>{
+    document.getElementById('score-ring').style.strokeDashoffset = circ*(1-pct);
+  },200);
+
+  // animate score number
+  let n=0;
+  const interval=setInterval(()=>{
+    n=Math.min(n+1,score);
+    document.getElementById('result-score').textContent=n;
+    if(n>=score) clearInterval(interval);
+  },60);
+}
+
+function openWhatsApp(){
+  // Mostra a tela de agendamento com Calendly + VSL
+  document.getElementById('result-section').classList.remove('active');
+  const ss = document.getElementById('schedule-section');
+  ss.classList.add('active');
+  window.scrollTo(0,0);
+
+  // Atualiza o iframe do Calendly com os dados do usuário
+  const name = encodeURIComponent(userData.name||'');
+  const wa   = encodeURIComponent(userData.wa||'');
+  const co   = encodeURIComponent(userData.company||'');
+  const iframe = document.getElementById('calendly-iframe');
+  iframe.src = `https://calendly.com/comercialgruponext/30min?name=${name}&a1=${wa}&a2=${co}`;
+
+  // Inicia o vídeo
+  const vid = document.getElementById('vsl-video');
+  if(vid){ vid.muted=true; vid.play().catch(()=>{}); }
+}
+
+function toggleMute(){
+  const vid = document.getElementById('vsl-video');
+  const btn = document.getElementById('vsl-btn-text');
+  const icon = document.getElementById('vsl-icon');
+  if(!vid) return;
+  vid.muted = !vid.muted;
+  if(vid.muted){
+    btn.textContent = 'Clique para ouvir';
+    icon.innerHTML = '<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/>';
+  } else {
+    btn.textContent = 'Clique para silenciar';
+    icon.innerHTML = '<path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>';
+  }
+}
+
+function initVslProgress(){}
+function updateVslProgress(){
+  const vid = document.getElementById('vsl-video');
+  const fill = document.getElementById('vsl-progress-fill');
+  if(!vid||!fill||!vid.duration) return;
+  fill.style.width = (vid.currentTime/vid.duration*100)+'%';
+}
+
+function scrollToCalendly(){
+  document.getElementById('calendly-iframe').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── SCHEDULE 2 (calendário customizado) ────────────────
+function openSchedule2(){
+  document.getElementById('result-section').classList.remove('active');
+  const s2 = document.getElementById('schedule2-section');
+  s2.classList.add('active');
+  window.scrollTo(0,0);
+  document.getElementById('s2-score-text').innerHTML =
+    `Sua pontuação de <strong style="color:var(--gold)">${score} pontos</strong> indica oportunidades claras de crescimento. Assista ao vídeo e agende seu diagnóstico gratuito.`;
+  renderCalendar();
+}
+
+// Calendário
+let calYear, calMonth, selectedDay=null, selectedTime=null;
+const monthNames = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const timeSlots = ['09:00','10:00','11:00','14:00','15:00','16:00','17:00'];
+
+function initCal(){
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+}
+function renderCalendar(){
+  if(!calYear) initCal();
+  const now = new Date();
+  const label = `${monthNames[calMonth]} de ${calYear}`;
+  document.getElementById('cal-month-label').textContent = label;
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  const prevDays = new Date(calYear, calMonth, 0).getDate();
+  const grid = document.getElementById('cal-days');
+  grid.innerHTML='';
+
+  // prev month days
+  for(let i=firstDay-1;i>=0;i--){
+    const d=document.createElement('div');
+    d.className='cal-day other-month';
+    d.textContent=prevDays-i;
+    grid.appendChild(d);
+  }
+  // current month
+  for(let i=1;i<=daysInMonth;i++){
+    const d=document.createElement('div');
+    const date=new Date(calYear,calMonth,i);
+    const isPast=date<new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    const isToday=date.getTime()===new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime();
+    const isWeekend=date.getDay()===0||date.getDay()===6;
+    let cls='cal-day';
+    if(isPast) cls+=' past';
+    else if(isToday) cls+=' today available';
+    else if(isWeekend) cls+=' weekend';
+    else cls+=' available';
+    if(selectedDay&&selectedDay.d===i&&selectedDay.m===calMonth&&selectedDay.y===calYear) cls+=' selected';
+    d.className=cls;
+    d.textContent=i;
+    if(!isPast){
+      d.onclick=()=>selectDay(i,calMonth,calYear);
+    }
+    grid.appendChild(d);
+  }
+  // next month filler
+  const total=firstDay+daysInMonth;
+  const remain=(7-total%7)%7;
+  for(let i=1;i<=remain;i++){
+    const d=document.createElement('div');
+    d.className='cal-day other-month';
+    d.textContent=i;
+    grid.appendChild(d);
+  }
+}
+function prevMonth(){
+  calMonth--;
+  if(calMonth<0){calMonth=11;calYear--;}
+  renderCalendar();
+}
+function nextMonth(){
+  calMonth++;
+  if(calMonth>11){calMonth=0;calYear++;}
+  renderCalendar();
+}
+function goToday(){
+  const now=new Date();
+  calYear=now.getFullYear();
+  calMonth=now.getMonth();
+  renderCalendar();
+}
+function selectDay(d,m,y){
+  selectedDay={d,m,y};
+  selectedTime=null;
+  renderCalendar();
+  renderTimeSlots();
+}
+function renderTimeSlots(){
+  const panel=document.getElementById('time-panel');
+  panel.innerHTML='<div class="time-slots">'+
+    timeSlots.map(t=>`<div class="time-slot" onclick="selectTime('${t}',this)">${t}</div>`).join('')+
+  '</div>';
+}
+function selectTime(t,el){
+  selectedTime=t;
+  document.querySelectorAll('.time-slot').forEach(s=>s.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function confirmSchedule(){
+  if(!selectedDay||!selectedTime){
+    alert('Por favor selecione uma data e horário.');
+    return;
+  }
+  const dateStr=`${selectedDay.d.toString().padStart(2,'0')}/${(selectedDay.m+1).toString().padStart(2,'0')}/${selectedDay.y}`;
+  const msg=encodeURIComponent(
+    `Olá! Gostaria de confirmar meu diagnóstico gratuito.\n`+
+    `Nome: ${userData.name||'—'}\n`+
+    `Empresa: ${userData.company||'—'}\n`+
+    `Data: ${dateStr} às ${selectedTime}\n`+
+    `Pontuação: ${score}/20`
+  );
+  window.open(`https://wa.me/5500000000000?text=${msg}`,'_blank');
+}
+
+// VSL Modal
+function openVslModal(){
+  document.getElementById('vsl-overlay').classList.add('active');
+  document.body.style.overflow='hidden';
+  const v=document.getElementById('vsl-modal-video');
+  if(v) v.play();
+}
+function closeVslModal(e){
+  if(e&&e.target!==document.getElementById('vsl-overlay')&&!e.currentTarget.classList.contains('overlay')) return;
+  document.getElementById('vsl-overlay').classList.remove('active');
+  document.body.style.overflow='';
+  const v=document.getElementById('vsl-modal-video');
+  if(v) v.pause();
+}
+
+// init
+renderQuestion();
+</script>
+</body>
+</html>
